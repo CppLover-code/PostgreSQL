@@ -6,4 +6,12 @@ ORM (Object-Relational Mapping — объектно-реляционное от�
 кода. 
 
 Самая популярная ORM для Flask — SQLAlchemy.
+Установка
+pip install sqlalchemy psycopg2-binary
 """
+# Подключение к PostgreSQL
+
+from SQLAlchemy import create_engine
+engine = create_engine(
+    "postgresql://postgres:password@localhost/test_dbAlc"
+)
