@@ -21,8 +21,6 @@ class User(Base):
     age = Column(Integer)
     city = Column(String)
 
-"""
-
 # Создание таблицы
 Base.metadata.create_all(engine)
 
@@ -48,7 +46,6 @@ with Session(engine) as session:
     session.commit()
     print("Users added")
 
-"""
 
 # ***********************************************************************************
 # Получить ВСЕХ пользователей
@@ -116,4 +113,23 @@ with Session(engine) as session:
     session.commit()                # сохраняем изменения
 
 # ***********************************************************************************
-# filter() — более мощный поиск
+# filter() — более мощный поиск:
+# >, <, >=, <=, !=
+
+with Session(engine) as session:
+
+    users = session.query(User).filter(User.age > 25).all()
+
+    print("****************************************************************")
+    for user in users:
+        print(user.name, user.age)
+
+"""
+SELECT * FROM users
+WHERE age > 25;
+"""
+# ***********************************************************************************
+# Сортировка - order_by()
+
+
+
