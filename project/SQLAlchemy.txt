@@ -1,0 +1,24 @@
+Главное понимание ORM
+
+Ты работаешь:
+
+✅ НЕ с SQL
+✅ а с Python-объектами
+
+Но SQLAlchemy под капотом делает SQL
+ORM	            SQL
+query()	        SELECT
+add()	        INSERT
+commit()	    COMMIT
+delete()	    DELETE
+
+
+Самые важные методы сейчас
+Метод	        Что делает
+all()	        получить всё
+first()	        первый объект
+filter_by()	    простой WHERE
+filter()	    сложный WHERE
+order_by()	    сортировка
+limit()	        ограничение
+commit()	    сохранить
