@@ -44,3 +44,30 @@ with Session(engine) as session:
     session.add_all(users)                          # добавляет сразу список объектов.
     session.commit()
     print("Users added")
+
+# ***********************************************************************************
+# Получить ВСЕХ пользователей
+
+with Session(engine) as session:
+
+    users = session.query(User).all() # запрос к табл. users(SELECT * FROM users;) и возвращаем все записи
+    # теперь в users хранится список объектов User
+
+    for user in users:
+        print(user.id, user.name, user.age, user.city)
+
+# ***********************************************************************************
+# Получить ПЕРВОГО пользователя
+
+with Session(engine) as session:
+
+    user = session.query(User).first() # возвращаем 1 объект
+    """
+    SELECT * FROM users
+    LIMIT 1;
+    """
+
+    print(user.id, user.name, user.age, user.city)
+
+# ***********************************************************************************
+# Получить ПЕРВОГО пользователя
