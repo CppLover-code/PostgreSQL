@@ -131,5 +131,71 @@ WHERE age > 25;
 # ***********************************************************************************
 # Сортировка - order_by()
 
+with Session(engine) as session:
 
+    users = session.query(User).order_by(User.age).all()
+
+    print("order_by()****************************************************************")
+    for user in users:
+        print(user.name, user.age)
+
+"""
+SELECT * FROM users
+ORDER BY age;
+"""
+# От большего к меньшему
+from sqlalchemy import desc
+with Session(engine) as session:
+
+    users = session.query(User).order_by(desc(User.age)).all()
+    # ORDER BY age DESC
+
+    print("order_by() DESC****************************************************************")
+    for user in users:
+        print(user.name, user.age)
+
+# ***********************************************************************************
+# LIMIT
+
+with Session(engine) as session:
+
+    users = session.query(User).limit(3).all()
+
+    print("LIMIT****************************************************************")
+    for user in users:
+        print(user.name, user.age)
+
+"""
+SELECT * FROM users
+LIMIT 3;
+"""
+
+# ***********************************************************************************
+# UPDATE - изменяем данные
+
+with Session(engine) as session:
+
+    user = session.query(User).filter_by(name="Max").first()
+
+    user.age = 99
+
+    session.commit()
+
+# ***********************************************************************************
+# DELETE
+
+with Session(engine) as session:
+
+    user = session.query(User).filter_by(name="Tom").first()
+
+    session.delete(user)
+
+    session.commit()
+    print("*************************************************************")
+    print(f"User {user.name}, {user.age}, {user.city} was deleted!")
+
+"""
+DELETE FROM users
+WHERE name = 'Tom';
+"""
 
